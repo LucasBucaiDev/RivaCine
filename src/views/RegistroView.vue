@@ -10,7 +10,6 @@
 
 </head>
 <body data-bs-theme="dark">
-
   <div class="formulario-centrado" >
     <form>
       <div class="form-group">
@@ -21,7 +20,7 @@
         <label for="pwd"><h3>Contraseña:</h3></label>
         <input type="password" class="form-control form-control-lg" id="pwd" placeholder="Ingresa contraseña"><br>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg">Ingresa</button>
+      <button type="submit" class="btn btn-primary btn-lg">Registrate</button>
     </form>
   </div>
 </body>

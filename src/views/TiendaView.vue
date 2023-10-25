@@ -4,6 +4,6 @@
 
 <template>
   <main>
-    <h1>putoElQueCompra</h1>
+    <h1>compraaa</h1>
   </main>
 </template>

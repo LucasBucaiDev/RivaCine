@@ -17,12 +17,22 @@ import HelloWorld from './components/HelloWorld.vue'
           <a class="nav-link active" aria-current="page"> <RouterLink to="/tienda" class="RouterStyle"> Tienda </RouterLink> </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page"> <RouterLink to="/login" class="RouterStyle"> Login </RouterLink> </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" aria-current="page"> <RouterLink to="/conocenos" class="RouterStyle"> Conocenos </RouterLink> </a>
         </li>
       </ul>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            👤
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#"> <RouterLink to="/login" class="RouterStyle"> Login </RouterLink> </a></li>
+            <li><a class="dropdown-item" href="#"><RouterLink to="/registro" class="RouterStyle"> Registrate </RouterLink></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     </div>
   </div>
 </nav>
