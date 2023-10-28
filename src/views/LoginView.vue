@@ -21,7 +21,7 @@
         <label for="pwd"><h3>Contraseña:</h3></label>
         <input type="password" class="form-control form-control-lg" id="pwd" placeholder="Ingresa contraseña"><br>
       </div>
-      <button type="submit" class="btn btn-primary btn-lg">Ingresa</button>
+      <button type="submit" class="btn btn-primary btn-lg">Ingresá</button>
     </form>
   </div>
 </body>
@@ -31,9 +31,9 @@
 
 <style>
 .formulario-centrado {
-  min-height: 50vh; /* altura mínima de 100% de la vista de la ventana */
+  min-height: 50vh; 
   display: flex;
-  align-items: center; /* centra verticalmente */
-  justify-content: center; /* centra horizontalmente */
+  align-items: center; 
+  justify-content: center;
 }
 </style>

@@ -22,8 +22,8 @@ const enviarRegistro = async () => {
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
-    <body data-bs-theme="dark">
-      <div class="formulario-centrado">
+    <body>
+      <div class="formulario-centrado bg-primary-subtle ">
         <form @submit.prevent="enviarRegistro">
           <div class="form-group">
             <label for="email"><h3>Email:</h3></label><br />
