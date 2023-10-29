@@ -1,17 +1,10 @@
 <script setup>
-import Service from '../service/service.js'
+import { useUsuariosStore } from "../stores/usuarios.js";
 
-const datos = {
-  email: '',
-  password: '',
-}
+const usuariosStore = useUsuariosStore();
 
 const enviarRegistro = async () => {
-  try {
-    await Service.guardarDatos(datos);
-  } catch (error) {
-    console.error(error);
-  }
+  await usuariosStore.enviarRegistro();
 };
 
 </script>
@@ -32,7 +25,7 @@ const enviarRegistro = async () => {
               class="form-control form-control-lg"
               id="email"
               placeholder="Ingresa email"
-              v-model="datos.email"
+              v-model="usuariosStore.datos.email"
             /><br />
           </div>
           <div class="form-group">
@@ -42,7 +35,7 @@ const enviarRegistro = async () => {
               class="form-control form-control-lg"
               id="password"
               placeholder="Ingresa contraseña"
-              v-model="datos.password"
+              v-model="usuariosStore.datos.password"
             /><br />
           </div>
           <button type="submit" class="btn btn-primary btn-lg">

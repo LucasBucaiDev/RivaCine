@@ -1,30 +1,15 @@
 <script setup>
-import Service from "../service/service.js";
-import { reactive, ref, onMounted } from "vue";
+import { onMounted } from 'vue';
+import { usePeliculasStore } from "../stores/peliculas.js";
 
-const peliculas = reactive([]);
-const peliculaSeleccionada = reactive({
-  title: "",
-  overview: "",
-  vote_average: 0,
-  backdrop_path: "",
-  release_date: "",
-});
-
-let mostrarInfo = ref(false);
+const peliculasStore = usePeliculasStore();
 
 const getPeliculas = async () => {
-  const peliculasData = await Service.cargarPeliculas(1);
-  const proximasPeliculasData = await Service.cargarPeliculas(2);
-  peliculas.push(...peliculasData.results, ...proximasPeliculasData.results);
+  await peliculasStore.getPeliculas();
 };
 
 const obtenerDetalle = async (p) => {
-  for (const key in p) {
-    peliculaSeleccionada[key] = p[key];
-  }
-  mostrarInfo.value = true;
-  window.scrollTo(0, 0);
+  await peliculasStore.obtenerDetalle(p)
 };
 
 onMounted(() => {
@@ -35,19 +20,19 @@ onMounted(() => {
 
 <template>
   <main class="mt-4 mx-5">
-    <div v-if="mostrarInfo" class="card mb-3 bg-info-subtle">
+    <div v-if="peliculasStore.mostrarInfo" class="card mb-3 bg-info-subtle">
       <button
         type="button"
         class="btn-close boton-cerrar"
         aria-label="Close"
-        @click="mostrarInfo = false"
+        @click="peliculasStore.mostrarInfo = false"
       ></button>
       <div class="row g-0">
         <div class="col-md-4">
           <img
             :src="
               'https://image.tmdb.org/t/p/w500/' +
-              peliculaSeleccionada.backdrop_path
+              peliculasStore.peliculaSeleccionada.backdrop_path
             "
             class="img-fluid rounded-start w-100"
             alt="..."
@@ -56,20 +41,20 @@ onMounted(() => {
         <div class="col-md-8">
           <div class="card-body">
             <h3 class="card-title border-bottom border-danger text-danger">
-              {{ peliculaSeleccionada.title }}
+              {{ peliculasStore.peliculaSeleccionada.title }}
             </h3>
             <p class="card-text">
-              {{ peliculaSeleccionada.overview }}
+              {{ peliculasStore.peliculaSeleccionada.overview }}
             </p>
             <p class="card-text">
               <small class="text-body-secondary"
-                >Rating: {{ peliculaSeleccionada.vote_average }}</small
+                >Rating: {{ Math.trunc(peliculasStore.peliculaSeleccionada.vote_average) }}</small
               >
               <br />
               <small class="text-body-secondary"
                 >Estreno:
                 {{
-                  peliculaSeleccionada.release_date.split("-").join("/")
+                  peliculasStore.peliculaSeleccionada.release_date.split("-").join("/")
                 }}</small
               >
             </p>
@@ -78,7 +63,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div v-for="p in peliculas">
+    <div v-for="p in peliculasStore.peliculas">
       <img
         class="border border-black rounded"
         :src="'https://image.tmdb.org/t/p/w500/' + p.poster_path"
