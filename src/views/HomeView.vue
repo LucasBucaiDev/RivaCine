@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted } from 'vue';
 import { usePeliculasStore } from "../stores/peliculas.js";
 
 const peliculasStore = usePeliculasStore();
@@ -12,9 +11,9 @@ const obtenerDetalle = async (p) => {
   await peliculasStore.obtenerDetalle(p)
 };
 
-onMounted(() => {
+if (!peliculasStore.datosCargados) {
   getPeliculas();
-});
+}
 
 </script>
 

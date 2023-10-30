@@ -15,6 +15,14 @@ const peliculas = axios.create({
   },
 });
 
+const candy = axios.create({
+  baseURL: "https://653f00ee9e8bd3be29dfd52f.mockapi.io/tienda",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+});
+
 export default {
   async cargarDatos() {
     try {
@@ -59,4 +67,14 @@ export default {
       throw "Error de conexion";
     }
   },
+
+  async cargarCandy() {
+    try {
+      const response = await candy.get("/");
+      return response.data;
+    } catch (error) {
+      throw "Error de conexion";
+    }
+  }
+
 };

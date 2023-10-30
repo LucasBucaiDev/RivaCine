@@ -11,13 +11,15 @@ export const usePeliculasStore = defineStore('peliculas', {
             backdrop_path: "",
             release_date: ""
         },
-        mostrarInfo: false
+        mostrarInfo: false,
+        datosCargados: false
     }),
     actions: {
         async getPeliculas() {
             const peliculasData = await Service.cargarPeliculas(1);
             const proximasPeliculasData = await Service.cargarPeliculas(2);
             this.peliculas.push(...peliculasData.results, ...proximasPeliculasData.results);
+            this.datosCargados = true; 
           },
 
         async obtenerDetalle(p) {
