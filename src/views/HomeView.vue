@@ -9,6 +9,7 @@ const getPeliculas = async () => {
 
 const obtenerDetalle = async (p) => {
   await peliculasStore.obtenerDetalle(p)
+  window.scrollTo(0, 0);
 };
 
 if (!peliculasStore.datosCargados) {
