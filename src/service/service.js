@@ -75,6 +75,5 @@ export default {
     } catch (error) {
       throw "Error de conexion";
     }
-  }
-
+  },
 };
