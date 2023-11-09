@@ -1,5 +1,8 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView } from "vue-router";
+import { useUsuariosStore } from "./stores/usuarios.js";
+
+const usuariosStore = useUsuariosStore();
 </script>
 
 <template>
@@ -26,8 +29,10 @@ import { RouterLink, RouterView } from 'vue-router';
             👤
           </button>
           <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="#"> <RouterLink to="/login" class="RouterStyle"> Login </RouterLink> </a></li>
-            <li><a class="dropdown-item" href="#"><RouterLink to="/registro" class="RouterStyle"> Registrate </RouterLink></a></li>
+            <li><a v-if="!usuariosStore.login" class="dropdown-item" href="#"> <RouterLink to="/login" class="RouterStyle"> Login </RouterLink> </a></li>
+            <li><a v-if="!usuariosStore.login" class="dropdown-item" href="#"><RouterLink to="/registro" class="RouterStyle"> Registrate </RouterLink></a></li>
+            <li><a v-if="usuariosStore.login" class="dropdown-item" href="#"> <RouterLink to="/" class="RouterStyle"> 🛒 </RouterLink> </a></li>
+            <li><a v-if="usuariosStore.login" class="dropdown-item" href="#"><RouterLink to="/login" class="RouterStyle" @click="usuariosStore.cerrarSesion"> Cerrar Sesion </RouterLink></a></li>
           </ul>
         </li>
       </ul>

@@ -1,6 +1,6 @@
 import axios from "axios";
 const cliente = axios.create({
-  baseURL: "https://6539b55be3b530c8d9e89ccd.mockapi.io/usuario",
+  baseURL: "http://localhost:3031/api/users",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -16,7 +16,7 @@ const peliculas = axios.create({
 });
 
 const candy = axios.create({
-  baseURL: "https://653f00ee9e8bd3be29dfd52f.mockapi.io/tienda",
+  baseURL: "http://localhost:3031/api/store",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -55,6 +55,11 @@ export default {
     } catch (error) {
       throw "Error de conexion";
     }
+  },
+
+  async login(usuario) {
+    const res = await cliente.post("/login", usuario);
+    return res;
   },
 
   async cargarPeliculas(pagina) {
