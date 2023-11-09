@@ -7,13 +7,14 @@ export const useUsuariosStore = defineStore("usuarios", {
     usuario: {
       email: "",
       password: "",
-      rol: "usuario",
+      rol: "",
     },
     login: false,
   }),
   actions: {
     async enviarRegistro() {
       try {
+        this.rol = "usuario";
         await Service.guardarDatos(this.usuario);
         router.push("/login");
       } catch (error) {
