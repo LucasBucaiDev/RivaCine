@@ -20,27 +20,6 @@ export const useUsuariosStore = defineStore("usuarios", {
         console.error(error);
       }
     },
-    // async iniciarSesion() {
-    //   try {
-    //     const datos = await Service.cargarDatos();
-    //     const usuario = datos.find(
-    //       (u) =>
-    //         u.email == this.datos.email && u.password == this.datos.password
-    //     );
-    //     if (usuario != null) {
-    //       localStorage.setItem(
-    //         "usuario",
-    //         JSON.stringify({
-    //           email: usuario.email,
-    //         })
-    //       );
-    //       this.login = true;
-    //       router.push("/");
-    //     }
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
 
     async iniciarSesion() {
       try {
@@ -61,10 +40,6 @@ export const useUsuariosStore = defineStore("usuarios", {
     },
 
     async cerrarSesion() {
-      // const datos = await Service.cargarDatos();
-      // const usuario = datos.find(
-      //   (u) => u.email == this.datos.email && u.password == this.datos.password
-      // );
       localStorage.removeItem(this.usuario);
       this.login = false;
     },
