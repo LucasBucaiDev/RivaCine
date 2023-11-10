@@ -15,7 +15,7 @@ const usuariosStore = useUsuariosStore();
 
     <body>
       <div class="formulario-centrado bg-primary-subtle ">
-        <form @submit.prevent="enviarRegistro">
+        <form @submit.prevent="usuariosStore.editarUsuario()">
           <div class="form-group">
             <label for="email">
               <h3>Email:</h3>

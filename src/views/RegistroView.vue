@@ -1,10 +1,12 @@
 <script setup>
+import router from "../router";
 import { useUsuariosStore } from "../stores/usuarios.js";
 
 const usuariosStore = useUsuariosStore();
 
 const enviarRegistro = async () => {
   await usuariosStore.enviarRegistro();
+  router.push("/login");
 };
 
 </script>

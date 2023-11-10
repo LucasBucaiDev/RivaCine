@@ -33,7 +33,7 @@ if (!usuariosStore.datosCargados) {
                         <td>{{ usuario.password }}</td>
                         <td>{{ usuario.rol }}</td>
                         <td>
-                            <button @click="usuariosStore.editarUsuario(usuario._id, usuario)"
+                            <button @click="usuariosStore.guardarUsuarioAEditar(usuario)"
                                 class="btn btn-outline-primary">Editar</button>
                             <button @click="usuariosStore.borrarUsuario(usuario._id)" class="btn btn-outline-danger"
                                 style="margin-left: 20px">Borrar</button>

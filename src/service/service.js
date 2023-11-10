@@ -24,10 +24,15 @@ const candy = axios.create({
 });
 
 export default {
-  async cargarDatos() {
+  async cargarDatos(id) {
     try {
-      const response = await cliente.get("/");
-      return response.data;
+      if (id) {
+        const usuario = await cliente.get("/" + id);
+        return usuario;
+      } else {
+        const response = await cliente.get("/");
+        return response.data;
+      }
     } catch (error) {
       throw "Error de conexion";
     }
@@ -49,11 +54,11 @@ export default {
     }
   },
 
-  async actualizarDatos(id, elem) {
+  async actualizarDatos(elem) {
     try {
-      await cliente.put("/" + id, elem);
+      await cliente.put("/", elem);
     } catch (error) {
-      throw "Error de conexion";
+      throw "Error al enviar";
     }
   },
 

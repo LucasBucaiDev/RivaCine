@@ -7,6 +7,8 @@ import RegistroView from "../views/RegistroView.vue";
 import candySystemView from "../views/System/candySystemView.vue";
 import usuariosSystemView from "../views/System/usuariosSystemView.vue";
 import addUserView from "../views/System/addUserView.vue";
+import editUserView from "../views/System/editUserView.vue";
+import deletedUserView from "../views/System/deletedUserView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +60,18 @@ const router = createRouter({
       name: "addUser",
       meta: { RequireAuth: true },
       component: addUserView,
+    },
+    {
+      path: "/editUser",
+      name: "editUser",
+      meta: { RequireAuth: true },
+      component: editUserView,
+    },
+    {
+      path: "/deleted",
+      name: "deleted",
+      meta: { RequireAuth: true },
+      component: deletedUserView,
     },
   ],
 });

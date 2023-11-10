@@ -10,16 +10,23 @@ export const useUsuariosStore = defineStore("usuarios", {
       password: "",
       rol: "",
     },
+    usuarioAEditar: {},
+    usuarioBuscado: {},
     login: false,
     admin: false,
     datosCargados: false,
   }),
   actions: {
+    async actualizarTabla() {
+      this.usuarios = [];
+      this.datosCargados = false;
+    },
+
     async enviarRegistro() {
       try {
-        this.rol = "usuario";
+        this.usuario.rol = "usuario";
         await Service.guardarDatos(this.usuario);
-        router.push("/login");
+        this.actualizarTabla();
       } catch (error) {
         console.error(error);
       }
@@ -56,9 +63,14 @@ export const useUsuariosStore = defineStore("usuarios", {
       this.admin = false;
     },
 
-    async getUsuarios() {
-      const usuarios = await Service.cargarDatos();
-      this.usuarios.push(...usuarios);
+    async getUsuarios(id) {
+      if (id) {
+        const usuario = await Service.cargarDatos(id);
+        this.usuarioBuscado = usuario.data;
+      } else {
+        const usuarios = await Service.cargarDatos();
+        this.usuarios.push(...usuarios);
+      }
       this.datosCargados = true;
     },
 
@@ -66,12 +78,25 @@ export const useUsuariosStore = defineStore("usuarios", {
       router.push("/addUser");
     },
 
+    async guardarUsuarioAEditar(usuario) {
+      this.usuarioAEditar = usuario;
+      router.push("/editUser");
+    },
+
+    async editarUsuario() {
+      const usuarioNuevo = { ...this.usuarioAEditar, ...this.usuario };
+      await Service.actualizarDatos(usuarioNuevo);
+      this.actualizarTabla();
+      router.push("/usersSystem");
+    },
+
     async borrarUsuario(id) {
       try {
+        this.getUsuarios(id);
         await Service.borrarDatos(id);
-        this.usuarios = [];
-        this.datosCargados = false;
-        router.push("/");
+        this.actualizarTabla();
+        console.log(this.usuarioBuscado);
+        router.push("/deleted");
       } catch (error) {
         throw "Error al borrar usuario";
       }
