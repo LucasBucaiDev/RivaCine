@@ -4,12 +4,15 @@ import router from "../router/index.js";
 
 export const useUsuariosStore = defineStore("usuarios", {
   state: () => ({
+    usuarios: [],
     usuario: {
       email: "",
       password: "",
       rol: "",
     },
     login: false,
+    admin: false,
+    datosCargados: false,
   }),
   actions: {
     async enviarRegistro() {
@@ -22,6 +25,12 @@ export const useUsuariosStore = defineStore("usuarios", {
       }
     },
 
+    async esAdmin() {
+      if (this.usuario.email == "admin@gmail.com") {
+        this.admin = true;
+      }
+    },
+
     async iniciarSesion() {
       try {
         const datos = await Service.login(this.usuario);
@@ -31,6 +40,7 @@ export const useUsuariosStore = defineStore("usuarios", {
             "usuario",
             JSON.stringify({ email: this.usuario.email, token: datos.data })
           );
+          this.esAdmin();
           router.push("/");
         } else {
           this.login = false;
@@ -43,6 +53,28 @@ export const useUsuariosStore = defineStore("usuarios", {
     async cerrarSesion() {
       localStorage.removeItem(this.usuario);
       this.login = false;
+      this.admin = false;
+    },
+
+    async getUsuarios() {
+      const usuarios = await Service.cargarDatos();
+      this.usuarios.push(...usuarios);
+      this.datosCargados = true;
+    },
+
+    async agregarUsuario() {
+      router.push("/addUser");
+    },
+
+    async borrarUsuario(id) {
+      try {
+        await Service.borrarDatos(id);
+        this.usuarios = [];
+        this.datosCargados = false;
+        router.push("/");
+      } catch (error) {
+        throw "Error al borrar usuario";
+      }
     },
   },
 });
