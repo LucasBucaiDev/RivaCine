@@ -32,7 +32,7 @@ if (!candyStore.datosCargados) {
             <td>{{ item.precio }}</td>
             <td>{{ item.descripcion }}</td>
             <td>
-              <button @click="candyStore.editarItem(item._id)" class="btn btn-outline-primary">Editar</button>
+              <button @click="candyStore.guardarItemAEditar(item)" class="btn btn-outline-primary">Editar</button>
               <button @click="candyStore.borrarItem(item._id)" class="btn btn-outline-danger"
                 style="margin-left: 20px">Borrar</button>
             </td>

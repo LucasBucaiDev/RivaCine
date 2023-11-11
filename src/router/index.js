@@ -9,6 +9,9 @@ import usuariosSystemView from "../views/System/usuariosSystemView.vue";
 import addUserView from "../views/System/addUserView.vue";
 import editUserView from "../views/System/editUserView.vue";
 import deletedUserView from "../views/System/deletedUserView.vue";
+import addItemView from "../views/System/addItemView.vue";
+import deletedItemView from "../views/System/deletedItemView.vue";
+import editItemView from "../views/System/editItemView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -72,6 +75,24 @@ const router = createRouter({
       name: "deleted",
       meta: { RequireAuth: true },
       component: deletedUserView,
+    },
+    {
+      path: "/addItem",
+      name: "addItem",
+      meta: { RequireAuth: true },
+      component: addItemView,
+    },
+    {
+      path: "/editItem",
+      name: "editItem",
+      meta: { RequireAuth: true },
+      component: editItemView,
+    },
+    {
+      path: "/deletedItem",
+      name: "deletedItem",
+      meta: { RequireAuth: true },
+      component: deletedItemView,
     },
   ],
 });
