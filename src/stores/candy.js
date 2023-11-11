@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import Service from "../service/service.js";
+import Service from "../service/storeService.js";
 import router from "../router";
 
 export const useCandyStore = defineStore("candy", {

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import Service from "../service/service.js";
+import Service from "../service/movieService.js";
 
 export const usePeliculasStore = defineStore("peliculas", {
   state: () => ({
