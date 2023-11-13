@@ -95,7 +95,6 @@ export const useUsuariosStore = defineStore("usuarios", {
         this.getUsuarios(id);
         await Service.borrarDatos(id);
         this.actualizarTabla();
-        console.log(this.usuarioBuscado);
         router.push("/deleted");
       } catch (error) {
         throw "Error al borrar usuario";

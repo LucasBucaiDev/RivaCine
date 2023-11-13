@@ -1,7 +1,10 @@
 <script setup>
 import { usePeliculasStore } from "../stores/peliculas.js";
+import { useCarritoStore } from "../stores/carrito.js";
 
+const carritoStore = useCarritoStore();
 const peliculasStore = usePeliculasStore();
+
 
 const getPeliculas = async () => {
   await peliculasStore.getPeliculas();
@@ -21,22 +24,13 @@ if (!peliculasStore.datosCargados) {
 <template>
   <main class="mt-4 mx-5">
     <div v-if="peliculasStore.mostrarInfo" class="card mb-3 bg-info-subtle">
-      <button
-        type="button"
-        class="btn-close boton-cerrar"
-        aria-label="Close"
-        @click="peliculasStore.mostrarInfo = false"
-      ></button>
+      <button type="button" class="btn-close boton-cerrar" aria-label="Close"
+        @click="peliculasStore.mostrarInfo = false"></button>
       <div class="row g-0">
         <div class="col-md-4">
-          <img
-            :src="
-              'https://image.tmdb.org/t/p/w500/' +
-              peliculasStore.peliculaSeleccionada.backdrop_path
-            "
-            class="img-fluid rounded-start w-100"
-            alt="..."
-          />
+          <img :src="'https://image.tmdb.org/t/p/w500/' +
+            peliculasStore.peliculaSeleccionada.backdrop_path
+            " class="img-fluid rounded-start w-100" alt="..." />
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -47,29 +41,23 @@ if (!peliculasStore.datosCargados) {
               {{ peliculasStore.peliculaSeleccionada.overview }}
             </p>
             <p class="card-text">
-              <small class="text-body-secondary"
-                >Rating: {{ Math.trunc(peliculasStore.peliculaSeleccionada.vote_average) }}</small
-              >
+              <small class="text-body-secondary">Rating: {{ Math.trunc(peliculasStore.peliculaSeleccionada.vote_average)
+              }}</small>
               <br />
-              <small class="text-body-secondary"
-                >Estreno:
+              <small class="text-body-secondary">Estreno:
                 {{
                   peliculasStore.peliculaSeleccionada.release_date.split("-").join("/")
-                }}</small
-              >
+                }}</small>
             </p>
-            <button class="btn btn-lg btn-success">Comprar</button>
+            <button class="btn btn-lg btn-success"
+              @click="carritoStore.guardarProducto(peliculasStore.peliculaSeleccionada)">Comprar</button>
           </div>
         </div>
       </div>
     </div>
     <div v-for="p in peliculasStore.peliculas">
-      <img
-        class="border border-black rounded"
-        :src="'https://image.tmdb.org/t/p/w500/' + p.poster_path"
-        @click="obtenerDetalle(p)"
-        style="cursor: pointer"
-      />
+      <img class="border border-black rounded" :src="'https://image.tmdb.org/t/p/w500/' + p.poster_path"
+        @click="obtenerDetalle(p)" style="cursor: pointer" />
     </div>
   </main>
 </template>

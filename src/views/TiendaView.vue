@@ -1,6 +1,9 @@
 <script setup>
 import { useCandyStore } from "../stores/candy.js";
+import { useCarritoStore } from "../stores/carrito.js";
 
+
+const carritoStore = useCarritoStore();
 const candyStore = useCandyStore();
 
 const getCandy = async () => {
@@ -51,7 +54,7 @@ if (!candyStore.datosCargados) {
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Precio: ${{ item.precio }}</li>
             </ul>
-            <a href="#" class="btn btn-primary">Comprar</a>
+            <a href="#" class="btn btn-primary" @click="carritoStore.guardarProducto(item)">Comprar</a>
           </div>
         </div>
       </div>

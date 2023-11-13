@@ -4,6 +4,7 @@ import TiendaView from "../views/TiendaView.vue";
 import LoginView from "../views/LoginView.vue";
 import ConocenosView from "../views/ConocenosView.vue";
 import RegistroView from "../views/RegistroView.vue";
+import CarritoView from "../views/CarritoView.vue";
 import candySystemView from "../views/System/candySystemView.vue";
 import usuariosSystemView from "../views/System/usuariosSystemView.vue";
 import addUserView from "../views/System/addUserView.vue";
@@ -45,6 +46,11 @@ const router = createRouter({
       path: "/registro",
       name: "registro",
       component: RegistroView,
+    },
+    {
+      path: "/carrito",
+      name: "carrito",
+      component: CarritoView,
     },
     {
       path: "/candySystem",

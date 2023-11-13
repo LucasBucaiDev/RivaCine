@@ -43,7 +43,7 @@ const usuariosStore = useUsuariosStore();
                       <RouterLink to="/registro" class="RouterStyle"> Registrate </RouterLink>
                     </a></li>
                   <li><a v-if="usuariosStore.login && !usuariosStore.admin" class="dropdown-item" href="#">
-                      <RouterLink to="/" class="RouterStyle"> 🛒 </RouterLink>
+                      <RouterLink to="/carrito" class="RouterStyle"> 🛒 </RouterLink>
                     </a></li>
                   <li><a v-if="usuariosStore.admin" class="dropdown-item" href="#">
                       <RouterLink to="/candySystem" class="RouterStyle">🏪 Candy System </RouterLink>
