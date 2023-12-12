@@ -40,20 +40,25 @@ export const useUsuariosStore = defineStore("usuarios", {
 
     async iniciarSesion() {
       try {
-        const datos = await Service.login(this.usuario);
-        if (datos.status == 200) {
+        const respuesta = await Service.login(this.usuario);
+
+        if (respuesta.data) {
           this.login = true;
-          localStorage.setItem(
+
+          const token = respuesta.data;
+
+          sessionStorage.setItem(
             "usuario",
-            JSON.stringify({ email: this.usuario.email, token: datos.data })
+            JSON.stringify({ email: this.usuario.email, token })
           );
+
           this.esAdmin();
           router.push("/");
         } else {
           this.login = false;
         }
       } catch (error) {
-        throw "Error de conexion";
+        throw new Error("Error de conexión");
       }
     },
 

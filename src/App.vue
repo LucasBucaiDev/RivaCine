@@ -23,11 +23,6 @@ const usuariosStore = useUsuariosStore();
                 <RouterLink to="/tienda" class="RouterStyle"> Tienda </RouterLink>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page">
-                <RouterLink to="/conocenos" class="RouterStyle"> Conocenos </RouterLink>
-              </a>
-            </li>
           </ul>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">

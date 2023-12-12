@@ -9,10 +9,10 @@ const peliculas = axios.create({
 });
 
 export default {
-  async cargarPeliculas(pagina) {
+  async cargarPeliculas() {
     try {
       const response = await peliculas.get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=de259a688bae760784f1bc07daa801eb&language=es&page=${pagina}`
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=de259a688bae760784f1bc07daa801eb&language=es`
       );
       return response.data;
     } catch (error) {

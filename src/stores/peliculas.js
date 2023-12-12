@@ -16,12 +16,8 @@ export const usePeliculasStore = defineStore("peliculas", {
   }),
   actions: {
     async getPeliculas() {
-      const peliculasData = await Service.cargarPeliculas(1);
-      const proximasPeliculasData = await Service.cargarPeliculas(2);
-      this.peliculas.push(
-        ...peliculasData.results,
-        ...proximasPeliculasData.results
-      );
+      const peliculasData = await Service.cargarPeliculas();
+      this.peliculas.push(...peliculasData.results);
       this.datosCargados = true;
     },
 
